@@ -44,12 +44,18 @@ resource "aws_s3_bucket_public_access_block" "data_lake" {
 
 First, install the HashiCorp tap, which is Hashicorp's official repository of all ``Homebrew`` packages.
 
-```Bash
+```bash
 brew tap hashicorp/tap
 ```
 
 Now, install Terraform from ``hashicorp/tap/terraform``.
-```Bash
+```bash
 brew install hashicorp/tap/terraform
 ```
 
+To verify the installation:<br>
+Verify that the installation worked by opening a new terminal session and listing Terraform's available subcommands.
+
+```bash
+terraform -help
+```
