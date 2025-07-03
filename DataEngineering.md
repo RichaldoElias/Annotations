@@ -38,4 +38,18 @@ resource "aws_s3_bucket_public_access_block" "data_lake" {
 
 ```
 
+#### How to use Terraform
+
+> Terraform lets you safely and consistently manage your infrastructure as code across multiple cloud providers. To provision infrastructure with Terraform, you will write configuration in Terraform's configuration language, configure your cloud provider credentials, and apply your configuration with the Terraform Command Line Interface (CLI). - [Terraform docs](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+
+First, install the HashiCorp tap, which is Hashicorp's official repository of all ``Homebrew`` packages.
+
+```Bash
+brew tap hashicorp/tap
+```
+
+Now, install Terraform from ``hashicorp/tap/terraform``.
+```Bash
+brew install hashicorp/tap/terraform
+```
 
