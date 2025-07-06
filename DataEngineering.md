@@ -47,7 +47,7 @@ First, install the HashiCorp tap, which is Hashicorp's official repository of al
 ```bash
 brew tap hashicorp/tap
 ```
-
+ter
 Now, install Terraform from ``hashicorp/tap/terraform``.
 ```bash
 brew install hashicorp/tap/terraform
@@ -59,3 +59,52 @@ Verify that the installation worked by opening a new terminal session and listin
 ```bash
 terraform -help
 ```
+
+#### Terraform main concepts
+
+>terraform settings
+```terraform
+terraform {
+    required_providers {
+        aws = {
+            source  = "hashicorp/aws"
+            version = ">= 4.16"
+        }
+    }
+
+    required_version = ">= 1.2.0"
+}
+```
+> providers
+>> A provider is a plugin file or a binary file that Terraform will use to create your resources.
+```terraform
+provider "aws" {
+    region = "us=east-1"
+}
+```
+
+> resources - let us create an EC2 instance
+
+```terraform
+resource "aws_instance" "webserver" {
+    ami = "ami-***********"
+    instance_type = "t2.micro"
+
+    tags = {
+        Name = "Websearver"
+    }
+}
+
+```
+
+After defining the desired resource, we can tell terraform to create the desired state of our infra <br>
+The command below, Initialize the backend, providers defined in the configuration file
+```bash
+terraform init
+```
+<br>
+
+After success initialization of terraform, we can use ``terraform plan`` and it will give us an execution plan that details what terraform is planning to create, update or destroy based on the configuration files.
+<br>
+
+After review, we can execute ``terraform apply`` that will ask for last approval, after it we wait for the implementation of the execution plan. more examples of terraform, go to the labs folder.
