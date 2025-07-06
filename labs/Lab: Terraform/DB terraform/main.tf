@@ -10,7 +10,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
 }
 
 resource "aws_db_instance" "my_database" {
-    allocated_storage    = 10
+    allocated_storage    = var.allocated_storage
     db_name              = var.db_username
     engine               = var.engine
     instance_class       = var.instance_class

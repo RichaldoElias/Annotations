@@ -8,6 +8,13 @@ variable "db_username" {
   default = "admin_user"
 }
 
+variable "allocated_storage" {
+  type    = number
+  default = 10
+  description = "The amount of storage (in GB) to allocate for the database."
+  
+}
+
 variable "db_passord" {
   type = string
 }
