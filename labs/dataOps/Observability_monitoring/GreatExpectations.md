@@ -1,0 +1,1 @@
+> As a data engineer, you also need visibility into the health, or in other words, the quality of your data.
