@@ -1,7 +1,7 @@
 # Data Engineering Refresher
 
 > ``Data engineering`` is the development, implementation, and maintenance of systems and processes that take in raw data and produce high-quality, consistent information that supports downstream use cases, such as analysis and machine learning.
->> A data engineer manages the data engineering lifecycle, beginning with getting data from source systems and ending with serving data for use cases, such as analysis or machine learning.
+    >> A data engineer manages the data engineering lifecycle, beginning with getting data from source systems and ending with serving data for use cases, such as analysis or machine learning.
 
 
 
@@ -107,4 +107,55 @@ terraform init
 After success initialization of terraform, we can use ``terraform plan`` and it will give us an execution plan that details what terraform is planning to create, update or destroy based on the configuration files.
 <br>
 
-After review, we can execute ``terraform apply`` that will ask for last approval, after it we wait for the implementation of the execution plan. more examples of terraform, go to the labs folder.
+After review, we can execute ``terraform apply`` that will ask for last approval, after it, we wait for the implementation of the execution plan. more examples of terraform, go to the labs folder.
+
+### DataOps - Observability: Great Expectation
+
+> When working with Great Expectations, you typically start your workflo by specifying the data that you wish to test, then you define the expectations or the tests that you want to perform on data, and finally, you validate your data against your expectations.
+    >> 1. Specify the data
+    >> 2. Define your expectations
+    >> 3. Validate your data against the expectations
+
+To make this possible, you need to interact with the Core components of Great Expectations, that are:
+
+    Data Context -> Data Sources -> Expectations -> Checkpoints
+
+These components are used to access, store, and manage the objects and processes that are needed in your workflow. 
+<br>
+
+Data Context
+<br>
+
+    The Entry point for the great expectations API (Instantiate a data context object)
+    - Great Expectations API are classes and methods that allow you to connect data sources, create expectations and validate your data.
+<br>
+
+Data Source
+<br>
+
+    Tells great expectations from where to get the data that you want to validate.
+    - Data Source: SQL Database, a local file system, an S3 bucket, a Pandas DataFrame...
+
+    After connecting to a Data Source, you need to tell great expectations which part of the data you need to focus on, this is done by declaring a Data Asset (Collection of records within a data source - Table, Join query, File) that you'll scan in Batches (partitions from your data assets) using a Batch Request:
+
+    Batch_request are the primary way to retrieve data from the data asset, and its what you provide for the rest of Great Expectations components. 
+<br>
+
+Expectations
+<br>
+
+    Statement that you use to verity if your data meets a certain condition (e.g: check if a column doesn't contain nulls). You can define your expectations or use one of the available statements from the expectation gallery (e.g: expect_column_values_to_be_unique).
+
+    You can define more than one expectation for your data asset and collect them in an EXPECTATION SUITE object
+
+<br>
+
+Checkpoints
+<br>
+
+    To validate your data, you need to create a validator object which expects a batch request and its correcponding expectation suite. 
+    - You can manually validate your data or automate the process using a checkpoint object that generate the validation results.
+
+Throughout this process, metadata about your project will be generated and great expectation will save it in some backend stores.
+> For practice, check the practical implementation on the labs folder.
+
