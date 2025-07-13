@@ -160,3 +160,67 @@ Throughout this process, metadata about your project will be generated and great
 > For practice, check the practical implementation on the labs folder.
 
 ### Orchestration
+
+
+> Pro:<br>
+    - Set up dependicies <br>
+    - Monitor tasks <br>
+    - Get alerts <br>
+    - Creat fallback plan <br>
+> CONS:  <br>
+    - More operational overhead than sumple Cron scheduling
+
+#### Apache Airflow
+
+Airflow Main Components:
+- 
+Airflow is made by the following componets:
+- User Interface ( Used to Visualize, monitor, trigger, troubleshoot your DAGs)
+- Web Server ( Where Airflow UI Runs)
+- Metadata Database
+- Workers
+- Scheduler
+- DAG Directory ( Store Python Scripts that define your DAGs).
+
+Airflow Operators:
+
+- PythonOperator: Execute a python script
+- BashOperator  : Execute bash commands
+- EmptyOperator : Organize the tasks
+- EmailOperator : Send notification via email
+- Sensor        : Special type of Operator used to make DAGs Event-driven
+
+ ```python
+from airflow import DAG
+from datetime import datetime
+from airflow.operators.python import PythonOperator
+
+
+# python functions that will be executed by our DAG
+def extract_function():
+    pass
+
+def transform_function():
+    pass
+
+def load_function():
+    pass
+
+# context manager
+with DAG(
+    dag_id = 'my_firstIdag',
+    description = 'ETL pipeline',
+    tags = ['data_engineering_team'],
+    schedule = '@daily',
+    start_date = datetime(2025,1,1),
+    catchup = False):
+
+    #define tasks here
+    task_1 = PythonOperator(task_id='extract', python_callable=extract_function)
+    task_2 = PythonOperator(task_id='transform', python_callable=transform_function)
+    task_3 = PythonOperator(task_id='load', python_callable=load_function)
+    
+    # Defining the dependencies using bit-shift operator
+    task_1 >> task_2 >> task_3
+
+ ```
