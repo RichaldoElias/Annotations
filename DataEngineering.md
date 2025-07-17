@@ -224,3 +224,24 @@ with DAG(
     task_1 >> task_2 >> task_3
 
  ```
+
+
+
+
+ # Data Storage and Queries
+
+ > Serialzation is a process that transalate the data into a standard format, usually a sequence of bytes that can be effeciently stored or shared over a network.
+ >> When you want to read the data, a process known as de-serialization to reconstruct the original data structures from the serialized format.
+ >> You can serialize data in ``row-based serialization - encode and sort tabular data record by record, so that a sequence of bytes represents one row of data `` - this is ideal for transactional operations where we need to access data from an entire row.
+ >>You can serialize data in ``column-based serialization - encode and store data column by column - so that a consecutive sequence of bytes in a serialized format represents a column`` - ideal for analytical queries where we perform operations on specific columns.
+
+## Cloud Storage Options:
+> File Storage - organizes files into a directory tree <br> Files Storage, despite being a more accessible and undestandable storage format, they don't have the highest read and write performance because they need to keep track of the file hierarchy.
+
+> Block Storage - provides the performance and flexibility needed for high-speed transactional data access. <br>
+You can distribute blocks of data across multiple storage disks, which provides higher scalability, stronger data durability.
+
+> Object Storage - Stores immutable files as data objects in a flat structure. It decouples the data storage layer from the compute layer, allows you to process data with ephemeral clusters and scale up and down on demand.
+
+
+> CAP Theorem - any Distributed system can only guarantee two out of three properties: ``Consistency - Every read reflects the latest write operation``, ``Availability - Every request will receive a response``, and ``Partition Tolerance - the system continues to function (even when the network experiences disruptions or failures that isolate some nodes from others.)``
