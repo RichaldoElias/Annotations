@@ -245,3 +245,10 @@ You can distribute blocks of data across multiple storage disks, which provides 
 
 
 > CAP Theorem - any Distributed system can only guarantee two out of three properties: ``Consistency - Every read reflects the latest write operation``, ``Availability - Every request will receive a response``, and ``Partition Tolerance - the system continues to function (even when the network experiences disruptions or failures that isolate some nodes from others.)``
+
+### Column vs Row-oriented Storage
+> ``Column-oriented`` storage is suitable for analytical workloads where you want to apply aggregating operations on columns. But it is not suitable for reading or writing/updating rows. ``Row-oriented storage`` is suitable for transactional workloads that require read and write to be performed with low latency. But it is not suitable for efficient analytical workloads.
+
+### Graph Databases
+
+>> Graph databases store data within a mathematical graph structure using nodes and edges. Nodes represent your data items, which are typically entities such as people, products, or locations, among other things, and edges represent the relationship or connection between these data items.
